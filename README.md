@@ -19,5 +19,13 @@
     9.If applicable, Pangolin and/or Nextclade are run on the consensus sequences.
 
 # Docker images software list
-::
+
     
+
+# Database
+
+ 1. Download Currently version:human k-mer database used by the NCBI SRA Human Read Removal Tool
+
+        mkdir -p /path/to/database/sra-human-scrubber/data
+        cd /path/to/database/sra-human-scrubber/data
+        wget https://ftp.ncbi.nlm.nih.gov/sra/dbs/human_filter/human_filter.db.20231218v2
