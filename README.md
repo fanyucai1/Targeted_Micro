@@ -25,7 +25,7 @@ docker pull fanyucai1/target_micro
 
 # Database
 
- 1. human k-mer database used by the NCBI SRA Human Read Removal Tool
+1. human k-mer database used by the NCBI SRA Human Read Removal Tool
 ```{.cs}
        mkdir -p /database/sra-human-scrubber/data
        cd /database/sra-human-scrubber/data
