@@ -50,10 +50,9 @@ docker pull fanyucai1/target_micro
 
 # Database
 
- 1. Download Currently version:human k-mer database used by the NCBI SRA Human Read Removal Tool
-
-
-
-        mkdir -p /path/to/database/sra-human-scrubber/data
-        cd /path/to/database/sra-human-scrubber/data
-        wget https://ftp.ncbi.nlm.nih.gov/sra/dbs/human_filter/human_filter.db.20231218v2
+ 1. human k-mer database used by the NCBI SRA Human Read Removal Tool
+```{.cs}
+       mkdir -p /database/sra-human-scrubber/data
+       cd /database/sra-human-scrubber/data
+       wget https://ftp.ncbi.nlm.nih.gov/sra/dbs/human_filter/human_filter.db.20231218v2
+```
