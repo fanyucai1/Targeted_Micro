@@ -24,3 +24,14 @@ mkdir -p /database/sra-human-scrubber/data
 cd /database/sra-human-scrubber/data
 wget https://ftp.ncbi.nlm.nih.gov/sra/dbs/human_filter/human_filter.db.20231218v2
 ```
+
+# Command
+```{.cs}
+docker run -v /raw_data/:/staging4/fanyucai/target_micro/raw_data \
+-v /script/:/staging4/fanyucai/target_micro/script/ \
+-v /outdir/:/staging4/fanyucai/target_micro/outdir \
+-v /database/:/staging4/fanyucai/target_micro/database/
+fanyucai1/target_micro \
+python3 /script/
+```
+

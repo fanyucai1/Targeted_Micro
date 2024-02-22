@@ -13,8 +13,8 @@ ENV LD_LIBRARY_PATH /usr/local/lib:/usr/local/lib64:$LD_LIBRARY_PATH
 RUN cd /software/ && wget https://github.com/samtools/samtools/releases/download/1.19.2/samtools-1.19.2.tar.bz2 && tar xjvf samtools-1.19.2.tar.bz2 && \
     wget https://github.com/samtools/bcftools/releases/download/1.19/bcftools-1.19.tar.bz2 && tar xjvf bcftools-1.19.tar.bz2 && \
     wget https://github.com/samtools/htslib/releases/download/1.19.1/htslib-1.19.1.tar.bz2 && tar xjvf htslib-1.19.1.tar.bz2 && \
-    cd samtools-1.19.2 && make -j20 && make install && cd /software/bcftools-1.19 && make -j20 && make install && \
-    cd /software/htslib-1.19.1 && make -j20 && make install
+    cd samtools-1.19.2 && make -j20 && cd /software/bcftools-1.19 && make -j20 && \
+    cd /software/htslib-1.19.1 && make -j20
 
 RUN cd /software/ && wget https://github.com/voutcn/megahit/releases/download/v1.2.9/MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz &&  \
     tar xzvf MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz &&  \
@@ -29,7 +29,6 @@ RUN mkdir -p /root/nextclade/ /raw_data /script/ /outdir/ /database/ &&  \
     cd /software/ && git clone https://github.com/andersen-lab/Freyja.git &&  \
     cd Freyja && /software/Python-v3.11.0/bin/python3 setup.py install
 
-RUN /software/Miniconda3/bin/conda install -c bioconda -c conda-forge -c defaults pangolin ivar kraken2 krakentools bbmap nextclade pyvcf  \
-    && /software/Miniconda3/bin/nextclade dataset get --name='sars-cov-2' --output-dir='/root/nextclade/'
-
+RUN /software/Miniconda3/bin/conda install -c bioconda -c conda-forge -c defaults pangolin ivar kraken2 krakentools bbmap nextclade pyvcf && mkdir -p /software/jvarkit
+COPY jvarkit.jar /software/jvarkit/
 RUN cd /software/ && rm -rf *.gz *.bz2 *zip Freyja/ samtools-1.19.2/ bcftools-1.19/
