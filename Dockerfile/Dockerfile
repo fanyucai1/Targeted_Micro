@@ -31,4 +31,4 @@ RUN mkdir -p /root/nextclade/ /raw_data /script/ /outdir/ /database/ &&  \
 
 RUN /software/Miniconda3/bin/conda install -c bioconda -c conda-forge -c defaults pangolin ivar kraken2 krakentools bbmap nextclade pyvcf && mkdir -p /software/jvarkit
 COPY jvarkit.jar /software/jvarkit/
-RUN cd /software/ && rm -rf *.gz *.bz2 *zip Freyja/ samtools-1.19.2/ bcftools-1.19/
+RUN cd /software/ && rm -rf *.gz *.bz2 *zip Freyja/

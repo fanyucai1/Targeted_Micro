@@ -1,7 +1,24 @@
 # software list
+
 ```{.cs}
-/usr/local/bin/samtools
-/usr/local/bin/bcftools
+# python-3.11.0
+/software/Python-v3.11.0/bin/python3
+
+# R-4.2.3
+/usr/local/bin/R
+
+# openlogic-openjdk-jre-17.0.9+9-linux-x64
+/software/openlogic-openjdk-jre-17.0.9+9-linux-x64/bin/java
+
+# openlogic-openjdk-jre-8u392-b08-linux-x64
+/software/openlogic-openjdk-jre-8u392-b08-linux-x64/bin/java
+
+# conda 23.11.0
+/software/Miniconda3/bin/conda
+
+# bioinformatic
+/software/samtools-1.19.2/samtools
+/software/bcftools-1.19/bcftools
 /software/fastqtk/fastqtk
 /software/seqtk/seqtk
 /software/bedtools2/bin/bedtools
