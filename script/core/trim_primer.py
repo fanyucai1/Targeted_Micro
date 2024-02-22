@@ -8,7 +8,7 @@ def ivar(bam,bed,outdir,prefix):
     cmd = "samtools sort %s.trim_primer.bam -o %s.trim_primer.sort.bam && rm -rf %s.trim_primer.bam" % (out, out,out)
     print(cmd)
     subprocess.check_call(cmd, shell=True)
-    cmd = "java -jar /software/jvarkit.jar biostar84452 --samoutputformat BAM %s.soft.clipped.sort.bam |samtools sort -n >%s.trimmed.bam" % (
+    cmd = "/software/openlogic-openjdk-jre-8u392-b08-linux-x64/bin/java -jar /software//jvarkit/jvarkit.jar biostar84452 --samoutputformat BAM %s.soft.clipped.sort.bam |samtools sort -n >%s.trimmed.bam" % (
     out, out)
     print(cmd)
     subprocess.check_call(cmd, shell=True)

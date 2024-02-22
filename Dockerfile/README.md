@@ -21,5 +21,5 @@
 /software/Miniconda3/bin/nextclade
 /software/Python-v3.11.0/bin/freyja
 /software/Python-v3.11.0/bin/freyja_plot
-/software/openlogic-openjdk-jre-8u392-b08-linux-x64/bin/java -jar /software/jvarkit.jar
+/software/openlogic-openjdk-jre-8u392-b08-linux-x64/bin/java -jar /software//jvarkit/jvarkit.jar
 ```
