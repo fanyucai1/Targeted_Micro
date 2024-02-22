@@ -10,11 +10,10 @@ def trimmomatic(R1,R2,prefix,outdir):
 
 
 if __name__=="__main__":
-    parser = argparse.ArgumentParser("Human reads are removed with a modified version of the SRA Human Read Scrubber tool.")
+    parser = argparse.ArgumentParser("Reads are trimmed and filtered using Trimmomatic.")
     parser.add_argument("-1", "--R1", help="sort bam file", required=True)
     parser.add_argument("-2", "--R2", help="reference fasta", required=True)
-    parser.add_argument("-d","--database",help="human k-mer database used by the NCBI SRA Human Read Removal Tool",required=True)
     parser.add_argument("-o", "--outdir", help="output directory", required=True)
     parser.add_argument("-p","--prefix",help="prefix of output",required=True)
     args=parser.parse_args()
-    scrub(args.R1,args.R2,args.database,args.prefix,args.outdir)
+    trimmomatic(args.R1,args.R2,args.prefix,args.outdir)
