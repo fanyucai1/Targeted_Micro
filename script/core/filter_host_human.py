@@ -3,11 +3,17 @@ import argparse
 
 def scrub(R1,R2,database,prefix,outdir):
     out = outdir + "/" + prefix
-    cmd = "/software/fastqtk/fastqtk interleave %s %s - | gzip > %s.interleave.fq.gz" % (R1,R2, out)
+    cmd = "cd %s && /software/seqtk/seqtk mergepe %s %s >%s.interleave.fq" % (outdir,R1,R2,prefix)
     subprocess.check_call(cmd, shell=True)
-    cmd = "/software/sra-human-scrubber/scripts/scrub.sh -s -p 24 -i %s.interleave.fq.gz -d %s|/software/fastqtk/fastqtk deinterleave - %s.R1.scrub.fq %s.R1.scrub.fq" % (out, database,out, out)
+    #cmd = (("cd %s && export PATH=/software/Python-v3.11.0/bin/:$PATH && "
+    #       "/software/sra-human-scrubber/scripts/scrub.sh -s -p 24 -i %s.interleave.fq.gz -d %s -o %s.interleave.fq.clean"
+    #       " && /software/fastqtk/fastqtk deinterleave %s.interleave.fq.clean %s.R1.scrub.fq %s.R1.scrub.fq")
+    #       % (outdir,prefix, database,prefix,prefix,prefix,prefix))
+    cmd = ("cd %s && export PATH=/software/Python-v3.11.0/bin/:$PATH && "
+           "/software/sra-human-scrubber/scripts/scrub.sh -s -p 24 -d %s -i %s.interleave.fq && "
+           "/software/fastqtk/fastqtk deinterleave %s.interleave.fq.clean %s.R1.scrub.fq %s.R2.scrub.fq"%(outdir,database,prefix,prefix,prefix,prefix))
     subprocess.check_call(cmd, shell=True)
-    subprocess.check_call("rm -rf %s.interleave.fq.gz"%(out),shell=True)
+    subprocess.check_call("rm -rf %s.interleave.fq %s.interleave.fq.clean"%(out,out),shell=True)
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser("Human reads are removed with a modified version of the SRA Human Read Scrubber tool.")

@@ -27,11 +27,13 @@ wget https://ftp.ncbi.nlm.nih.gov/sra/dbs/human_filter/human_filter.db.20231218v
 
 # Command
 ```{.cs}
-docker run -v /raw_data/:/staging4/fanyucai/target_micro/raw_data \
--v /script/:/staging4/fanyucai/target_micro/script/ \
--v /outdir/:/staging4/fanyucai/target_micro/outdir \
--v /database/:/staging4/fanyucai/target_micro/database/
+docker run -v /staging4/fanyucai/target_micro/raw_data:/raw_data/ \
+-v /staging4/fanyucai/target_micro/script/:/script/ \
+-v /staging4/fanyucai/target_micro/outdir:/outdir/ \
+-v /staging4/fanyucai/target_micro/database/:/database/ \
 fanyucai1/target_micro \
-python3 /script/
+cd /outdir/ && /software/Python-v3.11.0/bin/python3 /script/core/filter_host_human.py \
+-1 /raw_data/SRR20696400_1.fastq.gz -2 /raw_data/SRR20696400_2.fastq.gz \
+-d /database/sra-human-scrubber/data/ -o /outdir/ -p SRR20696400
 ```
 
