@@ -7,6 +7,7 @@ def trimmomatic(R1,R2,prefix,outdir):
          "PE %s %s %s_R1.fq.gz %s_R1_unpaired.fq.gz %s_R2.fq.gz %s_R2_unpaired.fq.gz "
          "LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36")%(R1,R2,out,out,out,out)
     subprocess.check_call(cmd,shell=True)
+    subprocess.check_call('cd %s && rm -rf *unpaired*'%(outdir),shell=True)
 
 
 if __name__=="__main__":

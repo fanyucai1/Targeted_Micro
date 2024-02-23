@@ -10,7 +10,7 @@ def scrub(R1,R2,database,prefix,outdir):
     #       " && /software/fastqtk/fastqtk deinterleave %s.interleave.fq.clean %s.R1.scrub.fq %s.R1.scrub.fq")
     #       % (outdir,prefix, database,prefix,prefix,prefix,prefix))
     cmd = ("cd %s && export PATH=/software/Python-v3.11.0/bin/:$PATH && "
-           "/software/sra-human-scrubber/scripts/scrub.sh -s -p 24 -d %s -i %s.interleave.fq && "
+           "/software/sra-human-scrubber/scripts/scrub.sh -s -p 24 -d %s/human_filter.db -i %s.interleave.fq && "
            "/software/fastqtk/fastqtk deinterleave %s.interleave.fq.clean %s.R1.scrub.fq %s.R2.scrub.fq"%(outdir,database,prefix,prefix,prefix,prefix))
     subprocess.check_call(cmd, shell=True)
     subprocess.check_call("rm -rf %s.interleave.fq %s.interleave.fq.clean"%(out,out),shell=True)
