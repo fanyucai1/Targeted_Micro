@@ -4,7 +4,7 @@ import argparse
 def trimmomatic(R1,R2,prefix,outdir):
     out=outdir+"/"+prefix
     cmd=("java -jar /software/Trimmomatic-0.39/trimmomatic-0.39.jar "
-         "PE %s %s %s_R1.fq.gz %s_R1_unpaired.fq.gz %s_R2.fq.gz %s_R2_unpaired.fq.gz "
+         "PE %s %s %s.clean_R1.fq.gz %s_R1_unpaired.fq.gz %s.clean_R2.fq.gz %s_R2_unpaired.fq.gz "
          "LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36")%(R1,R2,out,out,out,out)
     subprocess.check_call(cmd,shell=True)
     subprocess.check_call('cd %s && rm -rf *unpaired*'%(outdir),shell=True)
