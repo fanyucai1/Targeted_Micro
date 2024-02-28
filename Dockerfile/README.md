@@ -13,7 +13,7 @@
 # openlogic-openjdk-jre-8u392-b08-linux-x64
 /software/openlogic-openjdk-jre-8u392-b08-linux-x64/bin/java
 
-# conda 23.11.0
+# conda 23.1.0
 /software/Miniconda3/bin/conda
 
 # bioinformatic

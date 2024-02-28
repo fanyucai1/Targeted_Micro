@@ -24,13 +24,12 @@ RUN cd /software/ && wget https://github.com/voutcn/megahit/releases/download/v1
     wget https://github.com/weizhongli/cdhit/releases/download/V4.8.1/cd-hit-v4.8.1-2019-0228.tar.gz &&  \
     tar xzvf cd-hit-v4.8.1-2019-0228.tar.gz && cd cd-hit-v4.8.1-2019-0228 && make
 
-RUN mkdir -p /root/nextclade/ /raw_data /script/ /outdir/ /database/ &&  \
+RUN mkdir -p /raw_data/ /script/ /outdir/ /database/ /software/jvarkit/ &&  \
     /software/Python-v3.11.0/bin/pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple seaborn matplotlib numpy pysam pandas snakemake biopython cvxpy click joblib freyja-plot tqdm &&  \
     cd /software/ && git clone https://github.com/andersen-lab/Freyja.git &&  \
     cd Freyja && /software/Python-v3.11.0/bin/python3 setup.py install
-
-RUN /software/Miniconda3/bin/conda install -c bioconda -c conda-forge -c defaults ivar kraken2 krakentools bbmap pyvcf && mkdir -p /software/jvarkit
+RUN cd /usr/bin/ && wget -O nextclade https://github.com/nextstrain/nextclade/releases/latest/download/nextclade-x86_64-unknown-linux-gnu && chmod u+x ./nextclade
 COPY jvarkit.jar /software/jvarkit/
-RUN "cd /usr/bin/ && wget -O nextclade http://github.com/nextstrain/nextclade/releases/latest/download/nextclade-x86_64-unknown-linux-gnu && chmod a+x ./nextclade"
+RUN /software/Miniconda3/bin/conda install -c bioconda -c conda-forge -c defaults pangolin ivar kraken2 krakentools bbmap pyvcf
 RUN cd /software/ && rm -rf *.gz *.bz2 *zip Freyja/
 
