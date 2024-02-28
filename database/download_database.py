@@ -51,5 +51,5 @@ subprocess.check_call(cmd,shell=True)
 ###############
 cmd=("mkdir -p %s/sra-human-scrubber && "
      "wget https://ftp.ncbi.nlm.nih.gov/sra/dbs/human_filter/human_filter.db.20231218v2 && "
-     "mv human_filter.db.20231218v2 %s/human_filter.db")%(args.datbase,args.datbase)
+     "mv human_filter.db.20231218v2 %s/sra-human-scrubber/human_filter.db")%(args.datbase,args.datbase)
 subprocess.check_call(cmd,shell=True)
