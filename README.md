@@ -17,11 +17,6 @@ fanyucai1/target_micro \
 ```
 **2. human k-mer database used by the NCBI SRA Human Read Removal Tool**
 ```{.cs}
-mkdir -p /database/
-cd /database/
-wget https://ftp.ncbi.nlm.nih.gov/sra/dbs/human_filter/human_filter.db.20231218v2
-mv human_filter.db.20231218v2 human_filter.db
-
 docker run -v /staging4/fanyucai/target_micro/raw_data:/raw_data/ \
 -v /staging4/fanyucai/target_micro/script/:/script/ \
 -v /staging4/fanyucai/target_micro/outdir:/outdir/ \
