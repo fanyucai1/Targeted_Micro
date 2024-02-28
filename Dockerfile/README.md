@@ -35,6 +35,7 @@
 /software/Miniconda3/bin/kraken2
 /software/Miniconda3/bin/mafft
 /software/Miniconda3/bin/pangolin
+# nextclade 3.2.1
 /software/Miniconda3/bin/nextclade
 /software/Python-v3.11.0/bin/freyja
 /software/Python-v3.11.0/bin/freyja_plot
