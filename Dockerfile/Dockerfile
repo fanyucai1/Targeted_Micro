@@ -29,6 +29,8 @@ RUN mkdir -p /root/nextclade/ /raw_data /script/ /outdir/ /database/ &&  \
     cd /software/ && git clone https://github.com/andersen-lab/Freyja.git &&  \
     cd Freyja && /software/Python-v3.11.0/bin/python3 setup.py install
 
-RUN /software/Miniconda3/bin/conda install -c bioconda -c conda-forge -c defaults pangolin ivar kraken2 krakentools bbmap nextclade pyvcf && mkdir -p /software/jvarkit
+RUN /software/Miniconda3/bin/conda install -c bioconda -c conda-forge -c defaults ivar kraken2 krakentools bbmap pyvcf && mkdir -p /software/jvarkit
 COPY jvarkit.jar /software/jvarkit/
+RUN "cd /usr/bin/ && wget -O nextclade http://github.com/nextstrain/nextclade/releases/latest/download/nextclade-x86_64-unknown-linux-gnu && chmod a+x ./nextclade"
 RUN cd /software/ && rm -rf *.gz *.bz2 *zip Freyja/
+

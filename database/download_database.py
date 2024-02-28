@@ -7,10 +7,10 @@ parser.add_argument("-d","--database",help="output directory",required=True,defa
 args=parser.parse_args()
 
 args.datbase=os.path.abspath(args.database)
-if not os.path.exists(args.database):
-    os.mkdir(args.database)
+os.removedirs(args.datbase)
+os.mkdir(args.database)
 
-docker="docker run -v %s:/database/ target_micro /software/Miniconda3/bin/nextclade dataset get "%(args.datbase)
+docker="docker run -v %s:/database/ target_micro nextclade dataset get "%(args.datbase)
 name="nextstrain/sars-cov-2"
 os.makedirs("%s/%s"%(args.database,name))
 cmd=docker+"--name \'%s\' --output-dir \'/database/nextstrain/sars-cov-2\'"%(name)
@@ -53,3 +53,6 @@ cmd=("mkdir -p %s/sra-human-scrubber && "
      "wget https://ftp.ncbi.nlm.nih.gov/sra/dbs/human_filter/human_filter.db.20231218v2 && "
      "mv human_filter.db.20231218v2 %s/sra-human-scrubber/human_filter.db")%(args.datbase,args.datbase)
 subprocess.check_call(cmd,shell=True)
+
+###############pangolin
+cmd="git clone "
