@@ -2,11 +2,9 @@ import subprocess
 import argparse
 import os
 
-def megahit(R1,R2,outdir,prefix):
+def megahit(R1,R2,prefix,outdir):
     if os.path.exists(outdir):
-        outdir=outdir+"/%s.assembly"%(prefix)
-        if os.path.exists(outdir):
-            subprocess.check_call("rm -rf %s"%(outdir),shell=True)
+        subprocess.check_call("rm -rf %s"%(outdir),shell=True)
     out=outdir+"/"+prefix
     cmd = ("/software/MEGAHIT-1.2.9-Linux-x86_64-static/bin/megahit -1 %s -2 %s --min-contig-len 500 --out-dir %s --out-prefix %s && "
                "/software/Python-v3.11.0/bin/python3 /software/quast-5.2.0/quast.py --output-dir %s %s.contigs.fa") % (R1, R2, outdir,prefix,outdir,out)

@@ -8,7 +8,7 @@ docker build https://github.com/cov-lineages/pangolin.git -t covlineages/pangoli
 docker pull fanyucai1/target_micro
 ```
 
-**1. Reads are trimmed and filtered using Trimmomatic with the following parameters: LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36.**
+**1. Reads are trimmed and filtered using Trimmomatic.**
 ```{.cs}
 docker run -v /staging4/fanyucai/target_micro/raw_data:/raw_data/ \
 -v /staging4/fanyucai/target_micro/script/:/script/ \

@@ -19,24 +19,31 @@ args.pe1=os.path.abspath(args.pe1)
 args.pe2=os.path.abspath(args.pe2)
 args.ref=os.path.abspath(args.ref)
 
-# step1:
-subprocess.check_call("mkdir -p %s/1.qc"%(args.outdir),shell=True)
-outdir_1=args.outdir+"/1.qc/"+args.prefix
+# step1: Reads are trimmed and filtered using Trimmomatic
+print("step1:Reads are trimmed and filtered using Trimmomatic.")
+core.qc.trimmomatic(args.pe1,args.pe2,args.prefix,args.outdir+"/1.qc/")
 
+# step2: human k-mer database used by the NCBI SRA Human Read Removal Tool
+print("step2:human k-mer database used by the NCBI SRA Human Read Removal Tool")
+core.filter_host_human.scrub(args.outdir+"/1.qc/"+args.prefix+".clean_R2.fq.gz",
+                             args.outdir+"/1.qc/"+args.prefix+".clean_R2.fq.gz",
+                             args.database+"/sra-human-scrubber/human_filter.db",
+                             args.prefix,
+                             args.outdir+"/2.filter_human/")
 
-# step2:
-subprocess.check_call("mkdir -p %s/2.human_removed"%(args.outdir),shell=True)
-outdir_2=args.outdir+"/2.human_removed/"+args.prefix
+# step3: MEGAHIT is used to perform de novo assembly on the scrubbed reads
+print("step3:MEGAHIT is used to perform de novo assembly on the scrubbed reads")
+core.denovo_assembly.megahit(args.outdir+"/2.filter_human/"+args.prefix+".R1.scrub.fq",
+                             args.outdir+"/2.filter_human/"+args.prefix+".R2.scrub.fq",
+                             args.prefix,
+                             args.outdir+"/3.assembly/")
 
+# step4: CD-HIT-EST is used to cluster similar contigs to reduce redundancy
+print("step4:CD-HIT-EST is used to cluster similar contigs to reduce redundancy")
+core.reduce_redundancy.cdhit(args.outdir+"/3.assembly/"+args.prefix+".contigs.fa",args.prefix,args.outdir+"/4.reduce_redundancy")
 
-
-# step3:
-subprocess.check_call("mkdir -p %s/3.denovo_assembly"%(args.outdir),shell=True)
-outdir_3=args.outdir+"/3.denovo_assembly/"
-
-
-# step4:
-subprocess.check_call("mkdir -p %s/4.reduce_redundancy"%(args.outdir),shell=True)
-outdir_4=args.outdir+"/4.reduce_redundancy/"
+# step5: create consensus sequences
+print("step5:create consensus sequences")
+core.consensus.bcftools()
 
 
