@@ -23,7 +23,7 @@ def nextclade(fasta,db,name,outdir=os.getcwd()):
     if re.search(r'mpox', name):
         db = db+"/mpox/"
 
-    clade_cmd="/software/Miniconda3/bin/nextclade run --input-dataset %s --output-all=%s %s"%(db,outdir,fasta)
+    clade_cmd="nextclade run --input-dataset %s --output-all=%s %s"%(db,outdir,fasta)
     subprocess.check_call(clade_cmd,shell=True)
 
 

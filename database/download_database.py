@@ -54,5 +54,3 @@ cmd=("mkdir -p %s/sra-human-scrubber && "
      "mv human_filter.db.20231218v2 %s/sra-human-scrubber/human_filter.db")%(args.datbase,args.datbase)
 subprocess.check_call(cmd,shell=True)
 
-###############pangolin
-cmd="git clone "

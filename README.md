@@ -1,4 +1,9 @@
 # Analysis Pipeline
+
+```{.cs}
+docker build https://github.com/covlineages/pangolin.git covlineages/pangolin
+```
+
 ## Docker image
 ```{.cs}
 docker pull fanyucai1/target_micro
