@@ -5,10 +5,6 @@ def scrub(R1,R2,database,prefix,outdir):
     out = outdir + "/" + prefix
     cmd = "cd %s && /software/seqtk/seqtk mergepe %s %s >%s.interleave.fq" % (outdir,R1,R2,prefix)
     subprocess.check_call(cmd, shell=True)
-    #cmd = (("cd %s && export PATH=/software/Python-v3.11.0/bin/:$PATH && "
-    #       "/software/sra-human-scrubber/scripts/scrub.sh -s -p 24 -i %s.interleave.fq.gz -d %s -o %s.interleave.fq.clean"
-    #       " && /software/fastqtk/fastqtk deinterleave %s.interleave.fq.clean %s.R1.scrub.fq %s.R1.scrub.fq")
-    #       % (outdir,prefix, database,prefix,prefix,prefix,prefix))
     cmd = ("cd %s && export PATH=/software/Python-v3.11.0/bin/:$PATH && "
            "/software/sra-human-scrubber/scripts/scrub.sh -s -p 24 -d %s/human_filter.db -i %s.interleave.fq && "
            "/software/fastqtk/fastqtk deinterleave %s.interleave.fq.clean %s.R1.scrub.fq %s.R2.scrub.fq"%(outdir,database,prefix,prefix,prefix,prefix))
