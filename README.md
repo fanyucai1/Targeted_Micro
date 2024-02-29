@@ -1,7 +1,8 @@
 # Analysis Pipeline
 
 ```{.cs}
-docker build https://github.com/covlineages/pangolin.git covlineages/pangolin
+docker rmi -f covlineages/pangolin:latest
+docker build https://github.com/cov-lineages/pangolin.git -t covlineages/pangolin:latest
 ```
 
 ## Docker image
