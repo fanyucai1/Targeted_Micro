@@ -1,14 +1,14 @@
 # Analysis Pipeline
 
+
+## 1.Docker image
 ```{.cs}
 docker rmi -f covlineages/pangolin:latest
 docker build https://github.com/cov-lineages/pangolin.git -t covlineages/pangolin:latest
-```
-
-## Docker image
-```{.cs}
 docker pull fanyucai1/target_micro
 ```
+
+## 2.Command
 
 **1. Reads are trimmed and filtered using Trimmomatic with the following parameters: LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36.**
 ```{.cs}
