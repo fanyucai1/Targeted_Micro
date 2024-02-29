@@ -1,7 +1,10 @@
+import os.path
 import subprocess
 import argparse
 
 def cdhit(fasta,prefix,outdir):## CD-HIT-EST is used to cluster similar contigs to reduce redundancy.
+    if not os.path.exists(outdir):
+        subprocess.check_call("mkdir -p %s"%outdir,shell=True)
     out = outdir + "/" + prefix
     cmd = "/software/cd-hit-v4.8.1-2019-0228/cd-hit-est -i %s -o %s.no_redundancy.fasta -c 0.95 -n 5 -g 1 -aS 0.8 -T 0"%(fasta,out)
     subprocess.check_call(cmd,shell=True)
