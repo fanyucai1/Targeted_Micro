@@ -48,7 +48,7 @@ os.makedirs("%s/%s"%(args.database,name))
 cmd=docker+"--name \'%s\' --output-dir \'/database/%s\'"%(name,name)
 subprocess.check_call(cmd,shell=True)
 
-###############
+###############sra-human-scrubber
 cmd=("mkdir -p %s/sra-human-scrubber && "
      "wget https://ftp.ncbi.nlm.nih.gov/sra/dbs/human_filter/human_filter.db.20231218v2 && "
      "mv human_filter.db.20231218v2 %s/sra-human-scrubber/human_filter.db")%(args.datbase,args.datbase)
