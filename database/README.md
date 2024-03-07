@@ -20,5 +20,5 @@
 
 ## step2: fix Dockerfile and build pangolin
     
-    docker build -t covlineages/pangolin ./
+    docker build -t covlineages/pangolin:latest ./
 
