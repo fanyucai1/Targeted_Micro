@@ -5,13 +5,13 @@ def ivar(bam,bed,outdir,prefix):
     out=outdir+"/"+prefix
     cmd = "/software/Miniconda3/bin/ivar trim -e -i %s -b %s -p %s.trim_primer | tee %s.ivar.stdout" % (bam, bed, out, out)
     subprocess.check_call(cmd, shell=True)
-    cmd = "samtools sort %s.trim_primer.bam -o %s.trim_primer.sort.bam && rm -rf %s.trim_primer.bam" % (out, out,out)
+    cmd = "/software/samtools/bin/samtools sort %s.trim_primer.bam -o %s.trim_primer.sort.bam && rm -rf %s.trim_primer.bam" % (out, out,out)
     subprocess.check_call(cmd, shell=True)
     cmd = ("/software/openlogic-openjdk-jre-8u392-b08-linux-x64/bin/java -jar /software//jvarkit/jvarkit.jar biostar84452 "
            "--samoutputformat BAM %s.trim_primer.sort.bam |samtools sort -n >%s.trimmed.bam && rm -rf %s.trim_primer.sort.bam") % (
     out, out,out)
     subprocess.check_call(cmd, shell=True)
-    cmd = ("/software/samtools-1.19.2/samtools fastq -1 %s_no_primer.R1.fq -2 %s_no_primer.R2.fq -s %s.singleton.fastq %s.trimmed.bam &>%s.bam2fastq.stdout"
+    cmd = ("/software/samtools/bin/samtools fastq -1 %s_no_primer.R1.fq -2 %s_no_primer.R2.fq -s %s.singleton.fastq %s.trimmed.bam &>%s.bam2fastq.stdout"
            % (out, out, out, out, out))
     subprocess.check_call(cmd, shell=True)
 

@@ -3,9 +3,9 @@ import argparse
 
 def bcftools(bam,ref_fasta,outdir,prefix):
     out=outdir+"/"+prefix
-    cmd = "/software/bcftools-1.19/bcftools mpileup -Ou -f %s %s | bcftools call --ploidy 1 -mv -Oz -o %s.calls.vcf.gz" % (ref_fasta,bam, out)
-    cmd += " && /software/bcftools-1.19/bcftools index %s.calls.vcf.gz" % (out)
-    cmd += " && cat %s | /software/bcftools-1.19/bcftools consensus %s.calls.vcf.gz -p %s > %s.consensus.fa" % (ref_fasta, out,prefix, out)
+    cmd = "/software/bcftools/bin/bcftools mpileup -Ou -f %s %s | /software/bcftools/bin/bcftools call --ploidy 1 -mv -Oz -o %s.calls.vcf.gz" % (ref_fasta,bam, out)
+    cmd += " && /software/bcftools/bin/bcftools index %s.calls.vcf.gz" % (out)
+    cmd += " && cat %s | /software/bcftools/bin/bcftools consensus %s.calls.vcf.gz -p %s > %s.consensus.fa" % (ref_fasta, out,prefix, out)
     subprocess.check_call(cmd, shell=True)
     subprocess.check_call('sed -i \'1s/.*/>%s/\' %s.consensus.fa' % (prefix, out), shell=True)
 
